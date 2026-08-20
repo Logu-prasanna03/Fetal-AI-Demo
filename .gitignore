@@ -1,0 +1,20 @@
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+.pytest_cache/
+backend/app/artifacts/*.joblib
+
+# Node
+frontend/node_modules/
+frontend/dist/
+
+# Secrets and local state
+.env
+.env.*
+!.env.example
+*.db
+
+# OS/editor
+.DS_Store
+.vscode/

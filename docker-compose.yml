@@ -1,0 +1,36 @@
+services:
+  database:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_DB: fetalai
+      POSTGRES_USER: fetalai
+      POSTGRES_PASSWORD: change-me-before-deploying
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U fetalai -d fetalai"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+  backend:
+    build: ./backend
+    environment:
+      DATABASE_URL: postgresql+psycopg://fetalai:change-me-before-deploying@database:5432/fetalai
+      SECRET_KEY: replace-with-a-long-random-secret-before-deploying
+      CORS_ORIGINS: http://localhost:5173
+    depends_on:
+      database:
+        condition: service_healthy
+    ports:
+      - "8000:8000"
+  frontend:
+    build:
+      context: ./frontend
+      args:
+        VITE_API_URL: http://localhost:8000
+    depends_on:
+      - backend
+    ports:
+      - "5173:80"
+volumes:
+  postgres_data:
