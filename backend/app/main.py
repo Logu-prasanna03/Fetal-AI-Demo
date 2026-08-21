@@ -25,3 +25,8 @@ app.include_router(analyses.router)
 @app.get("/health")
 def health() -> dict:
     return {"status": "ok", "model_version": service.model.version, "is_demo_model": service.model.is_demo}
+
+
+@app.get("/")
+def root() -> dict:
+    return {"service": "FetalAI API", "docs": "/docs", "health": "/health"}
