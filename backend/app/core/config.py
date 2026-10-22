@@ -1,7 +1,12 @@
 import os
 
 
-DATABASE_URL = os.getenv("DATABASE_URL", "sqlite:///./fetalai.db")
+# Vercel's deployed function filesystem is read-only except for /tmp.  The
+# temporary SQLite fallback keeps the portfolio demo runnable when a hosted
+# database has not yet been configured.  It is intentionally ephemeral: use a
+# managed PostgreSQL DATABASE_URL before storing any meaningful demo records.
+_default_database = "sqlite:////tmp/matria-care-demo.db" if os.getenv("VERCEL") else "sqlite:///./matria-care-demo.db"
+DATABASE_URL = os.getenv("DATABASE_URL") or _default_database
 # Supabase supplies a standard PostgreSQL URL; make the installed psycopg v3
 # driver explicit for SQLAlchemy.
 if DATABASE_URL.startswith("postgresql://"):

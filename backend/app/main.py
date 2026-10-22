@@ -8,7 +8,7 @@ from app.core.database import Base, engine
 from app.routes import analyses, auth, monitoring, profiles
 from app.routes.analyses import service
 
-app = FastAPI(title="Matria Care API", version="0.3.0", description="Maternal and fetal care portfolio demo; not for diagnosis or emergency use.")
+app = FastAPI(title="Matria Care API", version="0.3.1", description="Maternal and fetal care portfolio demo; not for diagnosis or emergency use.")
 app.add_middleware(CORSMiddleware, allow_origins=CORS_ORIGINS, allow_credentials=True, allow_methods=["*"], allow_headers=["*"])
 Base.metadata.create_all(bind=engine)
 
