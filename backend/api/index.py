@@ -1,3 +1,3 @@
-"""Vercel serverless entry point for the FetalAI FastAPI application."""
+"""Compatibility entry point for legacy /api/index Vercel requests."""
 
 from app.main import app
