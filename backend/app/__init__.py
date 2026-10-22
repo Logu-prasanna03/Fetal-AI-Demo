@@ -1,2 +1,2 @@
-"""FetalAI API package."""
+"""Matria Care API package."""
 

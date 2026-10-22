@@ -1,12 +1,12 @@
-# FetalAI
+# Matria Care
 
 > **Research and clinical decision-support prototype — not a medical device and not for diagnosis, treatment, or emergency use.**
 
-FetalAI is a portfolio project that turns fetal cardiotocography-style measurements into an interpretable machine-learning risk classification: **Normal**, **Suspect**, or **Pathological**. It pairs a React clinician dashboard with a FastAPI prediction service and a scikit-learn MLP classifier.
+Matria Care is a portfolio demonstration of a connected maternal-and-fetal care workspace. It combines a fictional care profile, simulated maternal–fetal monitoring, clinician oversight, and CTG-style machine-learning classification: **Normal**, **Suspect**, or **Pathological**. It pairs a React dashboard with a FastAPI service and a scikit-learn MLP classifier.
 
 ## Why this project
 
-- Demonstrates an end-to-end ML product: preprocessing, model training, evaluation, inference, and a human-facing UI.
+- Demonstrates an end-to-end ML product: preprocessing, model training, evaluation, inference, a human-facing UI, and a device-ready telemetry boundary.
 - Keeps the model's role narrow: it supports review, never replaces a qualified clinician.
 - Makes uncertainty visible through confidence, model provenance, and feature-level context.
 
@@ -14,8 +14,9 @@ FetalAI is a portfolio project that turns fetal cardiotocography-style measureme
 
 ```text
 React + Tailwind dashboard  →  FastAPI API  →  scikit-learn pipeline (Scaler + MLP)
-                                              ↳ prediction history (in-memory for MVP)
-                                              ↳ global feature importance
+                                              ↳ PostgreSQL/SQLite demo records
+                                              ↳ synthetic maternal–fetal telemetry
+                                              ↳ future wearable / CTG adapter boundary
 ```
 
 ## Quick start
@@ -57,7 +58,7 @@ Open the displayed local URL. The frontend expects the API at `http://localhost:
 
 ## Roadmap
 
-1. **MVP (included):** API, MLP pipeline, clinician dashboard, safe messaging, prediction history.
+1. **MVP (included):** demo care profile, simulated monitoring, API, MLP pipeline, clinician dashboard, safe messaging, and prediction history.
 2. **Data and persistence:** PostgreSQL, SQLAlchemy/Alembic, authenticated clinician roles, audit logs.
 3. **ML quality:** held-out evaluation report, experiment tracking, calibration, drift monitoring, SHAP-based explanations.
 4. **RAG (optional):** retrieve only from reviewed, versioned reference material and generate an educational explanation; never let an LLM produce the risk class.
@@ -71,5 +72,5 @@ Open the displayed local URL. The frontend expects the API at `http://localhost:
 
 ## Suggested LinkedIn project description
 
-Built **FetalAI**, an end-to-end fetal-health clinical decision-support prototype using React, Tailwind CSS, FastAPI, and a scikit-learn MLP pipeline. The application classifies CTG-style measurements into Normal, Suspect, and Pathological categories, exposes prediction confidence and feature context, and is explicitly designed as a research prototype—not a diagnostic tool.
+Built **Matria Care**, a maternal-and-fetal care portfolio demonstration using React, Tailwind CSS, FastAPI, PostgreSQL-ready persistence, and a scikit-learn MLP pipeline. The application includes a fictional care profile, simulated monitoring feed, a clinician dashboard, and CTG-style classification into Normal, Suspect, and Pathological categories. It is explicitly designed as a research prototype—not a diagnostic or clinical-record system.
 

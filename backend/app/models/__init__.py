@@ -1,3 +1,3 @@
-from app.models.entities import Analysis, User
+from app.models.entities import Analysis, CareProfile, MonitoringReading, User
 
-__all__ = ["Analysis", "User"]
+__all__ = ["Analysis", "CareProfile", "MonitoringReading", "User"]

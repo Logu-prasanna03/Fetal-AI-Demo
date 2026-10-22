@@ -86,3 +86,36 @@ class AuthResponse(BaseModel):
 class StoredAnalysisResponse(PredictionResponse):
     created_at: datetime
     patient_reference: str
+
+
+class CareProfileRequest(BaseModel):
+    """Demo-only record fields. Use fictional information only."""
+
+    pregnancy_week: int | None = Field(default=None, ge=1, le=45)
+    care_stage: str = Field(default="Demo care plan", min_length=2, max_length=80)
+    preferred_contact: str = Field(default="In-app demo only", min_length=2, max_length=80)
+
+
+class CareProfileResponse(CareProfileRequest):
+    id: str
+    updated_at: datetime
+
+
+class MonitoringReadingRequest(BaseModel):
+    """Normalized reading accepted from a future approved device adapter."""
+
+    source: Literal["simulator", "wearable", "ctg", "ehr_import"] = "simulator"
+    observed_at: datetime | None = None
+    maternal_heart_rate: float | None = Field(default=None, ge=20, le=260)
+    systolic_bp: float | None = Field(default=None, ge=50, le=260)
+    diastolic_bp: float | None = Field(default=None, ge=30, le=180)
+    oxygen_saturation: float | None = Field(default=None, ge=50, le=100)
+    fetal_heart_rate: float | None = Field(default=None, ge=40, le=260)
+    uterine_activity: float | None = Field(default=None, ge=0, le=100)
+    data_quality: Literal["good", "limited", "invalid", "unknown"] = "unknown"
+    raw_payload: dict = Field(default_factory=dict)
+
+
+class MonitoringReadingResponse(MonitoringReadingRequest):
+    id: str
+    is_simulated: bool
